@@ -1,5 +1,5 @@
-rssCloud Server
----------------
+rssCloud Server 2.0.0-alpha
+---------------------------
 
 rssCloud Server implementation in Node.js
 
@@ -16,7 +16,7 @@ npm start
 
 ### POST /pleaseNotify
 
-Posting to /pleaseNotify is your way of alerting the server that you want to receive notificaions when one or more resources are updated. 
+Posting to /pleaseNotify is your way of alerting the server that you want to receive notificaions when one or more resources are updated.
 
 The POST parameters are:
 
@@ -52,7 +52,7 @@ Examples:
 
 ### POST /ping
 
-Posting to /ping is your way of alerting the server that a resource has been updated. 
+Posting to /ping is your way of alerting the server that a resource has been updated.
 
 The POST parameters are:
 
