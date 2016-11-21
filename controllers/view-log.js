@@ -9,15 +9,15 @@
 
     function processResponse(req, res, data) {
         switch (req.accepts('html', 'json')) {
-        case 'html':
-            res.render('view-log', data);
-            break;
-        case 'json':
-            res.json(data.eventlog);
-            break;
-        default:
-            res.status(406).send('Not Acceptable');
-            break;
+            case 'html':
+                res.render('view-log', data);
+                break;
+            case 'json':
+                res.json(data.eventlog);
+                break;
+            default:
+                res.status(406).send('Not Acceptable');
+                break;
         }
     }
 

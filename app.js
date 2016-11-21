@@ -20,7 +20,7 @@
     nconf
         .overrides({
             'APP_NAME': 'rssCloudServer',
-            'APP_VERSION': packageJson.version,
+            'APP_VERSION': packageJson.version
         })
         .argv()
         .env()
@@ -78,11 +78,11 @@
     })
         .on('error', function (error) {
             switch (error.code) {
-            case 'EADDRINUSE':
-                console.log('Error: Port ' + nconf.get('PORT') + ' is already in use.');
-                break;
-            default:
-                console.log(error.code);
+                case 'EADDRINUSE':
+                    console.log('Error: Port ' + nconf.get('PORT') + ' is already in use.');
+                    break;
+                default:
+                    console.log(error.code);
             }
         });
 }());

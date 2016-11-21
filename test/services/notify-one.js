@@ -7,7 +7,7 @@
         clock;
 
     describe('services/notify-one.js correct api', function () {
-        before(function(done) {
+        before(function (done) {
             sinon
                 .stub(request, 'post')
                 .yields(null, {statusCode: 200});
@@ -16,7 +16,7 @@
             done();
         });
 
-        after(function(done) {
+        after(function (done) {
             request.post.restore();
             clock.restore();
             done();
@@ -30,7 +30,9 @@
                 }
             };
             notifyOne(data, 'http://www.google.com/', 'http://192.168.0.1/', false, function (err) {
-                if (err) { return done(err); }
+                if (err) {
+                    return done(err);
+                }
                 data.subscriptions.should.have.property('http://www.google.com/');
                 data.subscriptions['http://www.google.com/'].should.have.property('http://192.168.0.1/');
                 data.subscriptions['http://www.google.com/']['http://192.168.0.1/']
@@ -45,7 +47,7 @@
     });
 
     describe('services/notify-one.js invalid api', function () {
-        before(function(done) {
+        before(function (done) {
             sinon
                 .stub(request, 'post')
                 .yields(null, {statusCode: 404});
@@ -54,7 +56,7 @@
             done();
         });
 
-        after(function(done) {
+        after(function (done) {
             request.post.restore();
             clock.restore();
             done();
@@ -68,7 +70,7 @@
                 }
             };
             notifyOne(data, 'http://www.google.com/', 'http://192.168.0.1/', false, function (err) {
-                err.should.not.be.empty;
+                err.should.not.be.empty();
                 data.subscriptions.should.have.property('http://www.google.com/');
                 data.subscriptions['http://www.google.com/'].should.have.property('http://192.168.0.1/');
                 data.subscriptions['http://www.google.com/']['http://192.168.0.1/']

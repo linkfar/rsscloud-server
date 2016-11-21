@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js --use_strict",
-    "jshint": "echo '=> linting' && jshint ./**/*.js",
-    "jscs": "echo '=> sniffing' && jscs -p crockford ./**/*.js",
+    "jshint": "echo '=> linting' && jshint {.,controllers,services,services/*,test/*}/*.js",
+    "jscs": "echo '=> sniffing' && jscs --preset=crockford {.,controllers,services,services/*,test/*}/*.js",
     "pretest": "npm run jshint -s && npm run jscs -s",
     "test": "echo '=> testing' && istanbul cover _mocha -- --recursive -R spec -r should",
     "posttest": "istanbul check-coverage"
@@ -17,27 +17,28 @@
   "author": "Andrew Shell <andrew@andrewshell.org>",
   "license": "MIT",
   "dependencies": {
-    "async": "^1.5.0",
-    "body-parser": "https://registry.npmjs.org/body-parser/-/body-parser-1.14.1.tgz",
-    "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
-    "moment": "https://registry.npmjs.org/moment/-/moment-2.10.6.tgz",
-    "nconf": "^0.8.2",
-    "request": "https://registry.npmjs.org/request/-/request-2.65.0.tgz",
+    "async": "^2.1.2",
+    "body-parser": "^1.15.2",
+    "db-migrate": "^0.10.0-beta.20",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "moment": "^2.16.0",
+    "nconf": "^0.8.4",
+    "request": "^2.79.0",
     "sprintf-js": "^1.0.3",
-    "xmlbuilder": "^4.1.0"
+    "xmlbuilder": "^8.2.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/andrewshell/rsscloud-server.git"
   },
   "devDependencies": {
-    "istanbul": "^0.4.0",
-    "jscs": "^3.0.4",
-    "jshint": "^2.9.2",
-    "mocha": "^2.5.3",
-    "nock": "^2.17.0",
-    "should": "^7.1.1",
-    "sinon": "^1.17.4"
+    "istanbul": "^0.4.5",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.4",
+    "mocha": "^3.1.2",
+    "nock": "^9.0.2",
+    "should": "^11.1.1",
+    "sinon": "^1.17.6"
   }
 }

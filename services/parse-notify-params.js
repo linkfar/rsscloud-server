@@ -20,11 +20,13 @@
         var apiurl;
 
         switch (protocol) {
-        case 'http-post':
-            apiurl = scheme + '://';
-            break;
-        default:
-            return callback(sprintf(appMessages.error.subscription.invalidProtocol, protocol));
+            case 'http-post':
+                apiurl = scheme + '://';
+                break;
+            default:
+                return callback(
+                    sprintf(appMessages.error.subscription.invalidProtocol, protocol)
+                );
         }
 
         apiurl += client + ':' + port;

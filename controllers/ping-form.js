@@ -6,12 +6,12 @@
 
     router.get('/', function (req, res) {
         switch (req.accepts('html')) {
-        case 'html':
-            res.render('ping-form');
-            break;
-        default:
-            res.status(406).send('Not Acceptable');
-            break;
+            case 'html':
+                res.render('ping-form');
+                break;
+            default:
+                res.status(406).send('Not Acceptable');
+                break;
         }
     });
 

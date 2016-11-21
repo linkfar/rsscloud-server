@@ -8,7 +8,7 @@
         clock;
 
     describe('services/notify-one-challenge.js correct api', function () {
-        before(function(done) {
+        before(function (done) {
             sinon
                 .stub(crypto, 'randomBytes')
                 .returns('CHALLENGE');
@@ -20,7 +20,7 @@
             done();
         });
 
-        after(function(done) {
+        after(function (done) {
             crypto.randomBytes.restore();
             request.get.restore();
             clock.restore();
@@ -35,7 +35,9 @@
                 }
             };
             notifyOneChallenge(data, 'http://www.google.com/', 'http://192.168.0.1/', function (err) {
-                if (err) { return done(err); }
+                if (err) {
+                    return done(err);
+                }
                 data.subscriptions.should.have.property('http://www.google.com/');
                 data.subscriptions['http://www.google.com/'].should.have.property('http://192.168.0.1/');
                 data.subscriptions['http://www.google.com/']['http://192.168.0.1/']
@@ -50,7 +52,7 @@
     });
 
     describe('services/notify-one-challenge.js invalid api', function () {
-        before(function(done) {
+        before(function (done) {
             sinon
                 .stub(request, 'get')
                 .yields(null, {statusCode: 404});
@@ -59,7 +61,7 @@
             done();
         });
 
-        after(function(done) {
+        after(function (done) {
             request.get.restore();
             clock.restore();
             done();
@@ -73,7 +75,7 @@
                 }
             };
             notifyOneChallenge(data, 'http://www.google.com/', 'http://192.168.0.1/', function (err) {
-                err.should.not.be.empty;
+                err.should.not.be.empty();
                 data.subscriptions.should.have.property('http://www.google.com/');
                 data.subscriptions['http://www.google.com/'].should.have.property('http://192.168.0.1/');
                 data.subscriptions['http://www.google.com/']['http://192.168.0.1/']
@@ -88,7 +90,7 @@
     });
 
     describe('services/notify-one-challenge.js invalid challenge', function () {
-        before(function(done) {
+        before(function (done) {
             sinon
                 .stub(request, 'get')
                 .yields(null, {statusCode: 200});
@@ -97,7 +99,7 @@
             done();
         });
 
-        after(function(done) {
+        after(function (done) {
             request.get.restore();
             clock.restore();
             done();
@@ -111,7 +113,7 @@
                 }
             };
             notifyOneChallenge(data, 'http://www.google.com/', 'http://192.168.0.1/', function (err) {
-                err.should.not.be.empty;
+                err.should.not.be.empty();
                 data.subscriptions.should.have.property('http://www.google.com/');
                 data.subscriptions['http://www.google.com/'].should.have.property('http://192.168.0.1/');
                 data.subscriptions['http://www.google.com/']['http://192.168.0.1/']
