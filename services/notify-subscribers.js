@@ -2,6 +2,7 @@
     "use strict";
 
     var appMessage = require('./app-messages'),
+        logEvent = require('./log-event'),
         notifyOne = require('./notify-one'),
         sprintf = require('sprintf-js').sprintf;
 
@@ -16,7 +17,7 @@
 
         for (apiurl in subscriptions) {
             if (subscriptions.hasOwnProperty(apiurl)) {
-                notifyOne(data, resourceUrl, apiurl, true);
+                notifyOne(data, resourceUrl, apiurl, logEvent, function cb() {});
             }
         }
 

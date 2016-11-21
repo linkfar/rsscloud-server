@@ -3,15 +3,18 @@
 
     var appMessages = require('./app-messages'),
         initSubscription = require('./init-subscription'),
-        logEvent = require('./log-event'),
         moment = require('moment'),
         request = require('request'),
         sprintf = require('sprintf-js').sprintf,
         url = require('url');
 
-    function notifyOne(data, resourceUrl, apiurl, flLog, callback) {
+    function notifyOne(data, resourceUrl, apiurl, logEvent, callback) {
         var startticks = moment().format('x'), subscription;
-        flLog = flLog || false;
+
+        logEvent = logEvent || function () {
+            return;
+        };
+
         callback = callback || function () {
             return;
         };
@@ -37,14 +40,12 @@
             subscription.ctConsecutiveErrors = 0;
             data.dirty = true;
 
-            if (flLog) {
-                logEvent(
-                    data,
-                    'Notify',
-                    sprintf(appMessages.log.notify, apiurl, parts.host, resourceUrl, parts.protocol),
-                    startticks
-                );
-            }
+            logEvent(
+                data,
+                'Notify',
+                sprintf(appMessages.log.notify, apiurl, parts.host, resourceUrl, parts.protocol),
+                startticks
+            );
 
             return callback(null);
         });
